@@ -45,6 +45,7 @@
 #[
   #import "@preview/pointless-size:0.1.2": zh
   #import "utils/chapnum.typ": chap-num
+  #import "utils/three-line-table.typ": three-line-table
   #show: chap-num
   #counter(page).update(1)
   #set page(
