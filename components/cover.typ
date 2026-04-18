@@ -4,8 +4,8 @@
 
 #let empty-underline(width: 100%) = box("", width: width, stroke: (bottom: 0.5pt))
 
-#let cover-info() = {
-  set text(font: ("Times New Roman", "SimSun"), size: zh("小五"))
+#let cover-info(fonts: (:)) = {
+  set text(font: fonts.宋体, size: zh("小五"))
 
   place(right, dx: 2em, float: false, grid(
     columns: (25em, 22.4em),
@@ -13,7 +13,6 @@
     table(
       columns: (3em, 1fr) * 2,
       inset: (x: 0pt),
-      // gutter: ,
       row-gutter: .65em,
       stroke: none,
       align: center,
@@ -25,8 +24,8 @@
   ))
 }
 
-#let cover-title(title: "你的论文标题") = {
-  set text(font: ("Times New Roman", "SimSun"), size: zh("小初"))
+#let cover-title(title: "你的论文标题", fonts: (:)) = {
+  set text(font: fonts.宋体, size: zh("小初"))
 
   align(center, fakebold(
     "本科毕业论文".clusters().join(h(.5em)) + "（设计）",
@@ -34,7 +33,7 @@
 
   v(0.5cm)
 
-  set text(font: "SimHei", size: zh("一号"))
+  set text(font: fonts.黑体, size: zh("一号"))
 
   align(center, title)
 }
@@ -46,23 +45,18 @@
 )))
 
 #let thesis-info(
-  // 学生姓名
   author: "",
-  // 学号
   student-id: "",
-  // 指导教师
   advisor: "",
-  // 学部、学院（中心）
   college: "",
-  // 年级专业
   department: "",
-  // 论文答辩日期
   defense-date: datetime.today(),
+  fonts: (:),
 ) = {
-  set text(font: "SimSun", size: zh("四号"), lang: "zh", region: "cn")
+  set text(font: fonts.宋体, size: zh("四号"), lang: "zh", region: "cn")
 
   let bold(c) = {
-    set text(font: "SimHei", size: zh("四号"), lang: "zh", region: "cn")
+    set text(font: fonts.黑体, size: zh("四号"), lang: "zh", region: "cn")
     (c)
   }
 
@@ -71,7 +65,6 @@
     table(
       columns: 24em,
       inset: (x: 0pt),
-      // gutter: ,
       row-gutter: .95em,
       stroke: none,
       align: center,
@@ -97,14 +90,13 @@
   advisor: "",
   college: "",
   department: "",
+  fonts: (:),
 ) = page({
-  // v(-.77cm)
-
-  cover-info()
+  cover-info(fonts: fonts)
 
   v(6.27cm)
 
-  cover-title(title: title)
+  cover-title(title: title, fonts: fonts)
 
   v(4.65cm)
 
@@ -114,11 +106,12 @@
     advisor: advisor,
     college: college,
     department: department,
+    fonts: fonts,
   )
 
   v(.2cm)
 
-  align(center, text(font: "Microsoft YaHei", size: zh("小二"), weight: "bold", "中国海洋大学"
+  align(center, text(font: fonts.雅黑, size: zh("小二"), weight: "bold", "中国海洋大学"
     .clusters()
     .join(h(.5em))))
 })

@@ -1,10 +1,8 @@
 #import "components/cover.typ": cover
 #import "components/abstract.typ": abstract
 #import "components/outline.typ": outline
-#import "components/acknowledgments.typ": acknowledgments
-#import "@preview/pointless-size:0.1.2": zh
-#import "utils/chapnum.typ": chap-num
-#import "utils/three-line-table.typ": three-line-table
+#import "utils/style.typ": apply-style, global-style
+#import "utils/fonts.typ": 字体 as 默认字体, setup-fonts
 
 #let project(
   title: (:),
@@ -15,11 +13,13 @@
   department: "",
   abstract-content: (:),
   keywords: (:),
+  fonts: 默认字体,
   body,
 ) = {
-  set text(lang: "zh", region: "cn")
-  set par(leading: 24pt, spacing: 24pt)
+  // 把传入的纯字体名称转换为带有中西文 fallback 配置的实际可用字体数组
+  let resolved-fonts = setup-fonts(fonts)
 
+  // 封面
   cover(
     title: title.zh,
     author: author,
@@ -27,42 +27,25 @@
     advisor: advisor,
     college: college,
     department: department,
+    fonts: resolved-fonts,
   )
+  
+  // 全局样式
+  show: global-style.with(fonts: resolved-fonts)
 
   // 摘要
   abstract(
     title: title,
     abstract: abstract-content,
     keywords: keywords,
+    fonts: resolved-fonts,
   )
 
+  // 目录
   outline()
 
-  show: chap-num
-  counter(page).update(1)
-  set page(
-    header: block(width: 100%, stroke: (bottom: .5pt), align(center, text(size: zh("小五"), title.zh))),
-  )
-
-  set heading(numbering: "1.1")
-  show heading: it => {
-    set text(font: "SimHei")
-    set block(spacing: 1.5em)
-    if it.level == 1 {
-      set text(size: zh("三号"))
-      it
-    } else {
-      set text(size: zh("四号"))
-      it
-    }
-  }
-
-  set text(font: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimSun"), size: zh("小四"))
-  set par(first-line-indent: (amount: 2em, all: true))
-
-  show figure.where(kind: table): set figure.caption(position: top)
-
-  show table: three-line-table
+  // 正文样式与内容
+  show: apply-style.with(title: title.zh)
 
   body
 }
