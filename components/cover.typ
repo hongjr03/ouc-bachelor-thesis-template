@@ -111,7 +111,5 @@
 
   v(.2cm)
 
-  align(center, text(font: fonts.雅黑, size: zh("小二"), weight: "bold", "中国海洋大学"
-    .clusters()
-    .join(h(.5em))))
+  align(center, text(font: fonts.雅黑, size: zh("小二"), weight: "bold", "中国海洋大学".clusters().join(h(.5em))))
 })

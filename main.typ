@@ -1,6 +1,4 @@
-#import "template.typ": project
-#import "components/bibliography.typ": bibliography
-#import "components/acknowledgments.typ": acknowledgments
+#import "template.typ": acknowledgments, bibliography, project
 
 #show: project.with(
   title: (
@@ -58,7 +56,7 @@ $ x = y + z $
 测试图片：
 
 #figure(
-  image("/assets/logo.svg", width: 4.2cm),
+  image("assets/logo.svg", width: 4.2cm),
   caption: [中国海洋大学],
 )
 
