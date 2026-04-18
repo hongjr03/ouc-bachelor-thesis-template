@@ -1,0 +1,20 @@
+[package]
+name = "ouc-bachelor-thesis"
+version = "0.1.0"
+entrypoint = "template.typ"
+authors = ["hongjr03"]
+license = "MIT"
+description = "A Typst template for the Bachelor thesis of Ocean University of China (OUC)."
+repository = "https://github.com/hongjr03/modern-ouc-thesis"
+keywords = ["thesis", "template", "ouc", "ocean-university-of-china"]
+categories = ["thesis"]
+compiler = "0.14.2"
+exclude = [
+    ".git/**",
+    ".gitignore",
+    "README.md"
+]
+
+[template]
+path = "."
+entrypoint = "main.typ"
