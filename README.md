@@ -2,6 +2,24 @@
 
 基于 [Typst](https://typst.app/) 编写的中国海洋大学本科毕业论文模板。
 
+## 效果预览
+
+以下是本模板渲染后的论文效果展示。所有预览图片可通过 `examples` 文件夹查看。
+
+<p align="center">
+  <img src="examples/1.png" width="24%" alt="封面" />
+  <img src="examples/2.png" width="24%" alt="中文摘要" />
+  <img src="examples/3.png" width="24%" alt="目录" />
+  <img src="examples/4.png" width="24%" alt="正文" />
+</p>
+
+<p align="center">
+  <img src="examples/5.png" width="24%" alt="封面" />
+  <img src="examples/6.png" width="24%" alt="中文摘要" />
+  <img src="examples/8.png" width="24%" alt="目录" />
+  <img src="examples/9.png" width="24%" alt="正文" />
+</p>
+
 ## 快速开始
 
 首先需要通过 `project.with` 注入论文的基础信息：
