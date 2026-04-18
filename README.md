@@ -1,4 +1,4 @@
-# 中国海洋大学本科毕业论文 Typst 模板 (OUC Bachelor Thesis)
+# （非官方）中国海洋大学本科毕业论文 Typst 模板
 
 基于 [Typst](https://typst.app/) 编写的中国海洋大学本科毕业论文模板。
 
