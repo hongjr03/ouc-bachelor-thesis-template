@@ -70,36 +70,7 @@
 
   #show figure.where(kind: table): set figure.caption(position: top)
 
-  #let three-line-table = it => {
-    if it.children.any(c => c.func() == table.hline) {
-      return it
-    }
 
-    let toprule = table.hline(stroke: 0.08em)
-    let bottomrule = toprule
-    let midrule = table.hline(stroke: 0.05em)
-
-    let meta = it.fields()
-    meta.stroke = none
-    meta.remove("children")
-
-    let header = it.children.find(c => c.func() == table.header)
-    let cells = it.children.filter(c => c.func() == table.cell)
-    if header == none {
-      let columns = meta.columns.len()
-      header = table.header(..cells.slice(0, columns))
-      cells = cells.slice(columns)
-    }
-
-    return table(
-      ..meta,
-      toprule,
-      header,
-      midrule,
-      ..cells,
-      bottomrule,
-    )
-  }
   #show table: three-line-table
 
   // 正文
@@ -134,7 +105,7 @@
   测试图片：
 
   #figure(
-    image("assets/中国海洋大学.svg", width: 4.2cm),
+    image("/assets/logo.svg", width: 4.2cm),
     caption: [中国海洋大学],
   )
 
@@ -165,9 +136,13 @@
 
 #bibliography("references.bib")
 
-#acknowledgments()[在论文的最后我想向所有帮助支持过我的亲人、朋友、老师致以崇高的敬意和真诚的感谢，感谢你们在我学习和科研中给予的生活和工作的支持。
+#acknowledgments()[
+  在论文的最后我想向所有帮助支持过我的亲人、朋友、老师致以崇高的敬意和真诚的感谢，感谢你们在我学习和科研中给予的生活和工作的支持。
 
-这段时光中，我要特别感谢指导老师在选题、研究方法和论文写作上的悉心指导；感谢同学和朋友在我碰到问题时给予帮助；最后特别感谢我的父母，感谢你们对我学习生涯的支持与鼓励。]
+  这段时光中，我要特别感谢指导老师在选题、研究方法和论文写作上的悉心指导；感谢同学和朋友在我碰到问题时给予帮助；最后特别感谢我的父母，感谢你们对我学习生涯的支持与鼓励。
+]
+
+
 
 
 

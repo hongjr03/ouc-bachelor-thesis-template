@@ -1,1 +1,1 @@
-#let logo = image("/assets/中国海洋大学.svg", width: 5cm)
+#let logo = image("/assets/logo.svg", width: 5cm)
