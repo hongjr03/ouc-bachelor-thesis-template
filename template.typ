@@ -15,7 +15,7 @@
   department: "",
   abstract-content: (:),
   keywords: (:),
-  body
+  body,
 ) = {
   set text(lang: "zh", region: "cn")
   set par(leading: 24pt, spacing: 24pt)
@@ -57,7 +57,7 @@
     }
   }
 
-  set text(font: "SimSun", size: zh("小四"))
+  set text(font: ((name: "Times New Roman", covers: "latin-in-cjk"), "SimSun"), size: zh("小四"))
   set par(first-line-indent: (amount: 2em, all: true))
 
   show figure.where(kind: table): set figure.caption(position: top)
