@@ -1,4 +1,4 @@
-#let 字体 = (
+#let fonts = (
   // 宋体
   宋体: "SimSun",
   // 黑体

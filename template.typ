@@ -2,7 +2,7 @@
 #import "components/abstract.typ": abstract
 #import "components/outline.typ": outline
 #import "utils/style.typ": apply-style, global-style
-#import "utils/fonts.typ": setup-fonts, 字体 as 默认字体
+#import "utils/fonts.typ": fonts as default-fonts, setup-fonts
 #import "@preview/valkyrie:0.2.2" as z
 
 #let info-schema = z.dictionary((
@@ -34,7 +34,7 @@
   department: "",
   abstract-content: (:),
   keywords: (:),
-  fonts: 默认字体,
+  fonts: default-fonts,
   body,
 ) = {
   let _ = z.parse(

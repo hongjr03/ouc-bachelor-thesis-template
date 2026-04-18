@@ -1,7 +1,7 @@
 #import "@preview/pointless-size:0.1.2": zh
 #import "chapnum.typ": chap-num
 #import "three-line-table.typ": three-line-table
-#import "fonts.typ": 字体
+#import "fonts.typ": fonts
 
 #let global-style(
   fonts: (:),
