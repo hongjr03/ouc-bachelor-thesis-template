@@ -1,6 +1,7 @@
 #import "@preview/pointless-size:0.1.2": zh
 
 #let outline() = page({
+  set std.outline.entry(fill: repeat(sym.dot))
   show std.outline.entry: it => {
     if it.level == 1 {
       set text(size: zh("四号"))
@@ -18,5 +19,6 @@
   }
   std.outline(
     title: "目录".clusters().join(" " * 3),
+    indent: 0em,
   )
 })
