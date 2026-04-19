@@ -25,7 +25,7 @@
 首先需要通过 `project.with` 注入论文的基础信息：
 
 ```typst
-#import "template.typ": project, bibliography, acknowledgments
+#import "@preview/unofficial-ouc-bachelor-thesis:0.1.0": project, bibliography, acknowledgments
 
 #show: project.with(
   title: (
