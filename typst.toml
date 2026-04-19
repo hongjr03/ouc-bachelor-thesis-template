@@ -4,17 +4,17 @@ version = "0.1.0"
 entrypoint = "template.typ"
 authors = ["hongjr03"]
 license = "MIT"
-description = "An unofficial Typst template for the Bachelor thesis of Ocean University of China (OUC)."
+description = "Unofficial Bachelor thesis for Ocean University of China (OUC)."
 repository = "https://github.com/hongjr03/ouc-bachelor-thesis"
 keywords = ["thesis", "template", "ouc", "ocean-university-of-china"]
 categories = ["thesis"]
 compiler = "0.14.2"
 exclude = [
     ".git/**",
-    ".gitignore",
-    "README.md"
+    ".gitignore"
 ]
 
 [template]
 path = "."
 entrypoint = "main.typ"
+thumbnail = "thumbnail.png"
