@@ -57,7 +57,9 @@ $ x = y + z $
 #figure(
   image("assets/logo.svg", width: 4.2cm),
   caption: [中国海洋大学],
-)
+)<fig:ouc-logo>
+
+@fig:ouc-logo 这是一张中国海洋大学的校徽图片。
 
 测试表格：
 
@@ -71,7 +73,9 @@ $ x = y + z $
     [TeX], [1978],
   ),
   caption: [一个基本的三线表],
-)
+)<fig:example-table>
+
+@fig:example-table 这个表格展示了三种文本排版系统的名称和它们被公开发布的年份。
 
 测试公式：
 
@@ -79,7 +83,30 @@ $
   lim_(x -> 0) (e^x - 1) / (2x)
   = lim_(x -> 0) e^x / 2
   = 1/2
-$
+$ <eq:limit>
+
+@eq:limit 这个公式展示了一个极限的计算过程，最终得出结果为 $1\/2$。
+
+#figure(
+  ```typst
+  = Heading 1
+  == Heading 2
+  === Heading 3
+  ```,
+  caption: [标题层级示例],
+) <fig:raw-example>
+
+@fig:raw-example 这个示例展示了 Typst 中的标题层级，从一级标题到三级标题。
+
+- 这是一个无序列表的示例。
+  - 这是一个二级无序列表项。
+    - 这是一个三级无序列表项。
++ 这是一个有序列表的示例。
+  1. 这是一个二级有序列表项。
+    1. 这是一个三级有序列表项。
++ 这是一个枚举列表的示例。
+  - 这是一个二级枚举列表项。
+    - 这是一个三级枚举列表项。
 
 #bibliography("references.bib")
 

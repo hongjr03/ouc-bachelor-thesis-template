@@ -1,4 +1,6 @@
 #import "@preview/pointless-size:0.1.2": zh
+#import "@preview/zebraw:0.6.1": zebraw
+#import "@preview/itemize:0.2.0": default-enum-list
 #import "chapnum.typ": chap-num
 #import "three-line-table.typ": three-line-table
 #import "fonts.typ": fonts
@@ -51,6 +53,14 @@
   )
 
   set heading(numbering: "1.1")
+
+  show raw.where(block: true): zebraw.with(
+    radius: .25em,
+    background-color: (luma(245), luma(235)),
+    lang: false,
+  )
+
+  show: default-enum-list
 
   body
 }
