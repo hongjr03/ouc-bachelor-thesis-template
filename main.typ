@@ -1,4 +1,4 @@
-#import "template.typ": acknowledgments, bibliography, project
+#import "@preview/unofficial-ouc-bachelor-thesis:0.1.0": acknowledgments, bibliography, project
 
 #show: project.with(
   title: (
