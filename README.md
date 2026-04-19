@@ -22,7 +22,13 @@
 
 ## 快速开始
 
-首先需要通过 `project.with` 注入论文的基础信息：
+可以通过 Typst 命令行快速初始化论文项目：
+
+```bash
+typst init @preview/unofficial-ouc-bachelor-thesis:0.1.0
+```
+
+初始化的项目会包含 `main.typ` 示例文件。此时你需要通过 `project.with` 注入论文的基础信息：
 
 ```typst
 #import "@preview/unofficial-ouc-bachelor-thesis:0.1.0": project, bibliography, acknowledgments
