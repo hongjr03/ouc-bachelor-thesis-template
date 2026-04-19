@@ -1,10 +1,10 @@
 [package]
-name = "ouc-bachelor-thesis"
+name = "unofficial-ouc-bachelor-thesis"
 version = "0.1.0"
 entrypoint = "template.typ"
 authors = ["hongjr03"]
 license = "MIT"
-description = "A Typst template for the Bachelor thesis of Ocean University of China (OUC)."
+description = "An unofficial Typst template for the Bachelor thesis of Ocean University of China (OUC)."
 repository = "https://github.com/hongjr03/ouc-bachelor-thesis"
 keywords = ["thesis", "template", "ouc", "ocean-university-of-china"]
 categories = ["thesis"]
