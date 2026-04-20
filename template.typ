@@ -1,5 +1,5 @@
 #import "components/cover.typ": cover
-#import "components/abstract.typ": abstract
+#import "components/abstract.typ" as a
 #import "components/outline.typ": outline
 #import "components/acknowledgments.typ": acknowledgments
 #import "utils/style.typ": apply-style, global-style
@@ -12,11 +12,11 @@
     en: z.string(),
   )),
   author: z.string(),
-  student-id: z.string(),
+  id: z.string(),
   advisor: z.string(),
   college: z.string(),
   department: z.string(),
-  abstract-content: z.dictionary((
+  abstract: z.dictionary((
     zh: z.any(),
     en: z.any(),
   )),
@@ -29,11 +29,11 @@
 #let project(
   title: (:),
   author: "",
-  student-id: "",
+  id: "",
   advisor: "",
   college: "",
   department: "",
-  abstract-content: (:),
+  abstract: (:),
   keywords: (:),
   fonts: default-fonts,
   body,
@@ -42,11 +42,12 @@
     (
       title: title,
       author: author,
-      student-id: student-id,
+      id: id,
       advisor: advisor,
       college: college,
       department: department,
-      abstract-content: abstract-content,
+      abstract: abstract,
+      acknowledgments: acknowledgments,
       keywords: keywords,
     ),
     info-schema,
@@ -59,7 +60,7 @@
   cover(
     title: title.zh,
     author: author,
-    student-id: student-id,
+    student-id: id,
     advisor: advisor,
     college: college,
     department: department,
@@ -70,9 +71,9 @@
   show: global-style.with(fonts: resolved-fonts)
 
   // 摘要
-  abstract(
+  a.abstract(
     title: title,
-    abstract: abstract-content,
+    abstract: abstract,
     keywords: keywords,
     fonts: resolved-fonts,
   )
