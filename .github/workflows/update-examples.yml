@@ -17,6 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Install just
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just
+
       - name: Install Typst
         uses: typst-community/setup-typst@v4
 
@@ -29,6 +34,7 @@ jobs:
 
       - name: Rebuild examples images
         run: |
+          just package @preview
           rm -f examples/*.png
           typst compile ./template/main.typ --format png "examples/{p}.png"
 
