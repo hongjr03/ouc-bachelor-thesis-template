@@ -10,12 +10,12 @@
   body,
 ) = {
   set text(lang: "zh", region: "cn")
-  set text(font: fonts.宋体, size: zh("小四"))
-  set par(leading: 24pt, spacing: 24pt, first-line-indent: (amount: 2em, all: true))
+  set text(font: fonts.宋体, size: zh("小四"), top-edge: "ascender", bottom-edge: "descender")
+  set par(leading: 24pt - zh("小四"), first-line-indent: (amount: 2em, all: true))
 
   show heading: it => {
     set text(font: fonts.黑体, weight: "bold")
-    set block(spacing: 1.5em)
+    set block(spacing: 1em)
     if it.level == 1 {
       set text(size: zh("三号"))
       // Note: headings are block elements so it.body acts normally, but we can set align here:
