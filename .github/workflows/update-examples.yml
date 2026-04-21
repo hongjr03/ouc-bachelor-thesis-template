@@ -1,0 +1,82 @@
+name: Update README Examples
+
+on:
+  push:
+    branches:
+      - "**"
+
+permissions:
+  contents: write
+
+jobs:
+  update-examples:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Download and install ZhongYi fonts
+        run: |
+          git clone --depth 1 --branch zhongyi-fonts-mirror https://github.com/hongjr03/scripts.git /tmp/font-repo
+          mkdir -p "$HOME/.local/share/fonts/zhongyi"
+          cp -r /tmp/font-repo/fonts/zhongyi/. "$HOME/.local/share/fonts/zhongyi/"
+          fc-cache -f
+
+      - name: Rebuild examples images
+        run: |
+          rm -f examples/*.png
+          typst compile ./template/main.typ --format png "examples/{p}.png"
+
+      - name: Update README examples section
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          max_page=$(find examples -maxdepth 1 -type f -name '*.png' -printf '%f\n' \
+            | sed 's/\.png$//' \
+            | grep -E '^[0-9]+$' \
+            | sort -n \
+            | tail -n 1)
+
+          if [[ -z "${max_page:-}" ]]; then
+            echo "No compiled examples found in examples/*.png" >&2
+            exit 1
+          fi
+
+          {
+            for ((i = 1; i <= max_page; i += 4)); do
+              echo '<p align="center">'
+              for ((j = i; j < i + 4 && j <= max_page; j++)); do
+                echo "  <img src=\"examples/${j}.png\" width=\"24%\" alt=\"第${j}页\" />"
+              done
+              echo '</p>'
+              echo
+            done
+          } > /tmp/readme-gallery.md
+
+          perl -0777 -i -pe '
+            my $gallery = do {
+              local $/;
+              open my $fh, "<", "/tmp/readme-gallery.md" or die $!;
+              <$fh>;
+            };
+            s@(## 效果预览\s*\n\s*以下是本模板渲染后的论文效果展示。所有预览图片可通过 `examples` 文件夹查看。\s*\n).*?(\n## 快速开始)@$1$gallery\n$2@s;
+          ' README.md
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet -- README.md examples; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md examples
+          git commit -m "chore: update examples preview images"
+          git push
