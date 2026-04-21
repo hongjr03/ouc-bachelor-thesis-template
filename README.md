@@ -22,6 +22,10 @@
 
 ## 快速开始
 
+> [!IMPORTANT]
+> 非 Windows 用户在编译前请先安装中文字体包：
+> https://github.com/hongjr03/assets/releases/download/cn-thesis-fonts-2.1-f0dde462e435/cn-thesis-fonts-2.1-f0dde462e435.zip
+
 可以通过 Typst 命令行快速初始化论文项目：
 
 ```bash
