@@ -62,7 +62,7 @@
     }
   }
   show bibliography: it => pagebreak(weak: true) + it
-
+  show figure: set block(breakable: true)
   body
 }
 

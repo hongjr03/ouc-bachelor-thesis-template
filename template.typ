@@ -1,7 +1,7 @@
 #import "components/cover.typ": cover
 #import "components/abstract.typ" as a
 #import "components/outline.typ": outline
-#import "components/acknowledgments.typ": acknowledgments
+#import "components/acknowledgments.typ": acknowledgments as acks
 #import "utils/style.typ": apply-style, global-style
 #import "utils/fonts.typ": fonts as default-fonts, setup-fonts
 #import "@preview/valkyrie:0.2.2" as z
@@ -26,6 +26,8 @@
     zh: z.array(z.string()),
     en: z.array(z.string()),
   )),
+  bibliography: z.any(),
+  acknowledgments: z.any(),
 ))
 
 #let project(
@@ -37,6 +39,8 @@
   abstract: (:),
   keywords: (:),
   fonts: default-fonts,
+  bibliography: "",
+  acknowledgments: [],
   body,
 ) = {
   let _ = z.parse(
@@ -48,6 +52,8 @@
       department: department,
       abstract: abstract,
       keywords: keywords,
+      bibliography: bibliography,
+      acknowledgments: acknowledgments,
     ),
     info-schema,
   )
@@ -94,4 +100,10 @@
 
 
   body
+
+  pagebreak(weak: true)
+
+  std.bibliography(bytes(bibliography), style: "gb-7714-2015-numeric", full: true)
+
+  acks(acknowledgments)
 }
