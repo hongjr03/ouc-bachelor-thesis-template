@@ -10,7 +10,7 @@
   // 纯西文字体
   西文: "Times New Roman",
   // 等宽字体
-  等宽: ("Courier New", "SimSun"),
+  等宽: ("Consolas", "Courier New", "SimSun"),
 )
 
 #let setup-fonts(fonts) = (
