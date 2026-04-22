@@ -53,11 +53,11 @@ typst init @preview/unofficial-ouc-bachelor-thesis:0.1.0
 
 <!-- README_MAIN_TYP:BEGIN -->
 ```typst
-#import "@preview/unofficial-ouc-bachelor-thesis:0.1.0": acknowledgments, project
+#import "@preview/unofficial-ouc-bachelor-thesis:0.1.0": project
 
 #show: project.with(
   title: (
-    zh: "基于唱跳说唱篮球的舞蹈练习",
+    zh: ("城市空气质量时空分布特征", "及其影响因素分析"),
     en: "The Practice of Dance Based on Singing, Dancing, Rapping and Basketball",
   ),
   author: (name: "蔡徐坤", id: "123456789"),
@@ -66,30 +66,31 @@ typst init @preview/unofficial-ouc-bachelor-thesis:0.1.0
   department: "计算机科学与技术2017级",
   abstract: (
     zh: [
-      出道之后，蔡徐坤大部分精力都投身于新歌的创作和专辑的打造。彼时，他需要随着 NINE PERCENT 在三个月内完成 17 场大型巡回见面会，因此写歌的时间必须挤出来。洗澡时、做造型时、飞机上、两个行程间或吃饭的空隙，只要有手机和旋律，任何地方都是他的创作场所；偶尔待在录音室里，甚至成为他的喘息时间。去年，新京报记者见到他时正值午饭，化妆室里传来哼鸣声，采访完的休息时间，我都可以写一段词。我还年轻，我觉得这都 OK。他曾表示。而《1》的发表同样违背偶像市场的规律。蔡徐坤本可以每月发一首，制造更多话题。但他认为，一首首发表并不足以让外界更全面地了解他的音乐风格，当别人都走得很快，我反而要踏誓实实一步步走。偶尔听到舆论质疑他没有作品，蔡徐坤也曾犹豫，要不要先发一部分出来？但内心却总有个声音说，你可以再多做几首不同风格的作品，让大家看到最全面、最好的你，而不是急于求成地去展现自己。
+      关于这个事，我简单说两句，你明白就行，总而言之这个事呢，现在就是这个情况，具体的呢，大家也都看得到，也得出来说那么几句，可能你听的不是很明白，但是意思就是那么个意思，不知道的你也不用去猜，这种事情见得多了，我只想说懂得都懂，不懂的我也不多解释，毕竟自己知道就好，细细品吧。
     ],
     en: [
-      After his debut, Cai devoted most of his energy to the creation of new songs and albums. At that time, he needed to complete 17 large-scale tour meetings with NINE PERCENT in three months, so the time for writing songs had to be squeezed out. While bathing, modeling, on the plane, between two itineraries or meals, as long as there was a mobile phone and melody, anywhere could be his creation place. Occasionally, staying in the studio even became his breathing time. Last year, when the reporter of The Beijing News saw him, it was lunch time, and there was humming in the dressing room. He once said, I can write a paragraph during the rest time after the interview. I am still young. I think it is OK.
+      #lorem(100)
     ],
   ),
   keywords: (
-    zh: ("蔡徐坤", "篮球", "舞台"),
-    en: ("Cai Xukun", "Basketball", "Dance"),
+    zh: ("关于这个事", "我简单说两句", "你明白就行"),
+    en: ("lorem ipsum", "dolor sit amet", "consectetur adipiscing elit"),
   ),
+  bibliography: read("references.bib"),
+  acknowledgments: [
+    在论文的最后我想向所有帮助支持过我的亲人、朋友、老师致以崇高的敬意和真诚的感谢，感谢你们在我的学习和科研中给予的生活和工作的支持。
+
+    这段时光中，我要特别感谢指导老师在选题、研究方法和论文写作上的悉心指导；感谢同学和朋友在我碰到问题时给予帮助；最后特别感谢我的父母，感谢你们对我学习生涯的支持与鼓励。
+  ],
 )
 
-// 正文
-= 标题
+= 绪论
 
-...
+#include "chapters/01-basic-syntax.typ"
 
-// 参考文献使用 BibTeX 格式导入
-#bibliography("references.bib", style: "gb-7714-2015-numeric")
+= 使用指南
 
-// 致谢部分
-#acknowledgments[
-  听我说谢谢你
-]
+#include "chapters/02-user-guide.typ"
 ```
 <!-- README_MAIN_TYP:END -->
 
