@@ -40,6 +40,20 @@ jobs:
         with:
           tool: just
 
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Download and install Chinese fonts
+        run: |
+          curl -fL "https://github.com/hongjr03/assets/releases/download/cn-thesis-fonts-2.1-f0dde462e435/cn-thesis-fonts-2.1-f0dde462e435.zip" -o /tmp/cn-thesis-fonts.zip
+          rm -rf /tmp/cn-thesis-fonts
+          mkdir -p /tmp/cn-thesis-fonts
+          unzip -q /tmp/cn-thesis-fonts.zip -d /tmp/cn-thesis-fonts
+
+          mkdir -p "$HOME/.local/share/fonts/cn-thesis"
+          find /tmp/cn-thesis-fonts -type f \( -iname '*.ttf' -o -iname '*.otf' -o -iname '*.ttc' \) -exec cp {} "$HOME/.local/share/fonts/cn-thesis/" \;
+          fc-cache -f
+
       - name: Determine and check package metadata
         run: |
           . scripts/setup
@@ -57,7 +71,9 @@ jobs:
       - name: Create archives
         run: |
           just package out
+          just package @preview
           mkdir dist
+          typst compile ./template/main.typ dist/example.pdf
           cd out
           zip -r "../dist/${PKG_NAME}-${PKG_VERSION}.zip" "${PKG_NAME}"
           # TODO create tar.gz with same contents as packages.typst.org
