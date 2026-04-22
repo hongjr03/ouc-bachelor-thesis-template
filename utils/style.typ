@@ -47,6 +47,8 @@
   show table: three-line-table
 
   show raw: set text(font: fonts.等宽)
+  show raw.where(block: true): set par(leading: .65em)
+
   show strong: it => context {
     if "simsun" in text.font {
       fakebold(it)
@@ -88,12 +90,13 @@
     radius: .25em,
     background-color: (luma(245), luma(235)),
     lang: false,
+    hanging-indent: true,
   )
 
   // show raw.where(block: true): set text(bottom-edge: "baseline", top-edge: "ascender")
 
   show raw.where(block: false): it => {
-    set text(size: .9em)
+    // set text(size: .9em)
     box(inset: (x: .25em), fill: luma(240), outset: (y: .25em), radius: .25em, it)
   }
 
