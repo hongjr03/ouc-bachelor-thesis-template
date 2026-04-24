@@ -35,7 +35,8 @@
       if it.numbering != none {
         it
       } else {
-        align(center, it)
+        set align(center)
+        it
       }
     } else {
       set text(size: zh("四号"))
