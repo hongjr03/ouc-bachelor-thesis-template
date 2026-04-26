@@ -34,7 +34,7 @@
       楷体: "KaiTi",
       仿宋: "FangSong",
       西文: "Times New Roman",
-      等宽: ("Consolas", "Courier New", "SimSun"),
+      等宽: ("Consolas", "Courier New", "Liberation Mono", "Noto Sans Mono CJK SC", "Noto Sans Mono", "SimSun"),
     ),
     numbering: (
       (figure.where(kind: raw), figure, "1-1"),
