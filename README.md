@@ -35,6 +35,7 @@ This package is an unofficial Typst template for Ocean University of China (OUC)
 <p align="center">
   <img src="examples/13.png" width="24%" alt="第13页" />
   <img src="examples/14.png" width="24%" alt="第14页" />
+  <img src="examples/15.png" width="24%" alt="第15页" />
 </p>
 
 
