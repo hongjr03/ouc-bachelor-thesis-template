@@ -54,7 +54,7 @@
   show raw.where(block: true): set par(leading: .65em)
 
   show math.equation: set text(font: fonts.数学)
-  
+
   show strong: it => context {
     if "simsun" in text.font {
       fakebold(it)
@@ -70,17 +70,21 @@
     }
   }
 
-
   show bibliography: it => pagebreak(weak: true) + it
   show figure: set block(breakable: true)
-
 
   body
 }
 
-#let apply-style(title: "", body) = {
-  show: chap-num
-
+#let apply-style(title: "", body, chap-num-config: ()) = {
+  show: chap-num.with(
+    config: chap-num-config + (
+      (figure.where(kind: image), figure, "1-1"),
+      (figure.where(kind: table), figure, "1-1"),
+      (figure.where(kind: raw), figure, "1-1"),
+      (math.equation, math.equation, "(1-1)"),
+    ),
+  )
   counter(page).update(1)
 
   set page(
