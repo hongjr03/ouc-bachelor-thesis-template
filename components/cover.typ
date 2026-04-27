@@ -1,4 +1,5 @@
 #import "@preview/pointless-size:0.1.2": zh
+#import "@preview/cuti:0.4.0": fakebold
 #import "/components/logo.typ": logo
 
 #let empty-underline(width: 100%) = box("", width: width, stroke: (bottom: 0.5pt))
@@ -15,8 +16,8 @@
       row-gutter: .65em,
       stroke: none,
       align: center,
-      [*分类号*], empty-underline(),
-      [*密级*], empty-underline(),
+      fakebold[分类号], empty-underline(),
+      fakebold[密级], empty-underline(),
       [*UDC*], table.cell(colspan: 3, empty-underline()),
     ),
     place(right + top, dy: -2em, logo),
@@ -26,14 +27,14 @@
 #let cover-title(fonts: (:), title: "") = {
   set text(font: fonts.宋体, size: zh("小初"))
 
-  align(center, strong(
+  align(center, fakebold(
     "本科毕业论文".clusters().join(h(.4em)) + "（设计）",
   ))
 
   v(0.5cm)
 
 
-  place(center, text(font: fonts.黑体, size: zh("一号"), if type(title) == str { title } else { title.join("\n") }))
+  align(center, text(font: fonts.黑体, size: zh("一号"), if type(title) == str { title } else { title.join("\n") }))
 }
 
 #let underline-box(c, width, stroke: (bottom: 0.5pt)) = box(width: 1fr, move(dy: .21em, box(
@@ -92,15 +93,15 @@
   {
     cover-info(fonts: fonts)
 
-    v(6.77cm)
+    v(6.27cm)
 
     cover-title(fonts: fonts, title: title)
 
-    v(7.15cm)
+    v(4.65cm)
 
     thesis-info(
       author: (name: name, id: id),
-      advisor: advisor,
+      advisor: if type(advisor) == array { advisor.join(h(1em)) } else { advisor },
       college: college,
       department: department,
       fonts: fonts,
@@ -108,7 +109,7 @@
 
     v(.2cm)
 
-    align(center, strong(text(font: fonts.楷体, size: zh("小二"), "中国海洋大学".clusters().join(h(.5em)))))
+    align(center, fakebold(text(font: fonts.楷体, size: zh("小二"), "中国海洋大学".clusters().join(h(.5em)))))
   },
   // background: image("/1d6f220a-7701-49c4-8084-16a8f20fb41a(1).pdf", page: 5),
 )

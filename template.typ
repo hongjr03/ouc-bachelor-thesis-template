@@ -15,7 +15,7 @@
     name: z.string(),
     id: z.string(),
   )),
-  advisor: z.string(),
+  advisor: z.either(z.string(), z.array(z.string())),
   college: z.string(),
   department: z.string(),
   abstract: z.dictionary((
@@ -38,6 +38,7 @@
   department: "",
   abstract: (:),
   keywords: (:),
+  fonts: default-fonts,
   bibliography: "",
   acknowledgments: [],
   config: (:),
@@ -59,7 +60,7 @@
   )
 
   // 把传入的纯字体名称转换为带有中西文 fallback 配置的实际可用字体数组
-  let fonts = default-fonts + config.at("fonts", default: ())
+  let fonts = default-fonts + fonts
   let resolved-fonts = setup-fonts(fonts)
 
   let title-str = (zh: if type(title.zh) == str { title.zh } else { title.zh.join() }, en: title.en)
@@ -71,9 +72,6 @@
     description: abstract.zh,
   )
 
-  // 全局样式
-  show: global-style.with(fonts: resolved-fonts)
-
   // 封面
   cover(
     title: title.zh,
@@ -84,6 +82,9 @@
     department: department,
     fonts: resolved-fonts,
   )
+
+  // 全局样式
+  show: global-style.with(fonts: resolved-fonts)
 
   // 摘要
   a.abstract(
@@ -97,17 +98,14 @@
   outline()
 
   // 正文样式与内容
-  show: apply-style.with(
-    title: title-str.zh,
-    chap-num-config: config.at("numbering", default: ()),
-  )
+  show: apply-style.with(title: title-str.zh, chap-num-config: config.at("numbering", default: ()))
 
 
   body
 
   pagebreak(weak: true)
 
-  std.bibliography(bytes(bibliography), style: "gb-7714-2015-numeric", full: false)
+  std.bibliography(bytes(bibliography), style: "gb-7714-2015-numeric", full: true)
 
   acks(acknowledgments)
 }

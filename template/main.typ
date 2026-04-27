@@ -6,7 +6,7 @@
     en: "The Practice of Dance Based on Singing, Dancing, Rapping and Basketball",
   ),
   author: (name: "蔡徐坤", id: "123456789"),
-  advisor: "唱跳导师",
+  advisor: ("唱跳导师", "篮球导师"),
   college: "信息科学与工程学院",
   department: "计算机科学与技术2017级",
   abstract: (
