@@ -33,7 +33,7 @@
   v(0.5cm)
 
 
-  align(center, text(font: fonts.黑体, size: zh("一号"), if type(title) == str { title } else { title.join("\n") }))
+  place(center, text(font: fonts.黑体, size: zh("一号"), if type(title) == str { title } else { title.join("\n") }))
 }
 
 #let underline-box(c, width, stroke: (bottom: 0.5pt)) = box(width: 1fr, move(dy: .21em, box(
@@ -92,11 +92,11 @@
   {
     cover-info(fonts: fonts)
 
-    v(6.27cm)
+    v(6.77cm)
 
     cover-title(fonts: fonts, title: title)
 
-    v(4.65cm)
+    v(7.15cm)
 
     thesis-info(
       author: (name: name, id: id),
