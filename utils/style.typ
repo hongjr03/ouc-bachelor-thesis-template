@@ -48,7 +48,6 @@
   }
 
   show figure.where(kind: table): set figure.caption(position: top)
-  show table: three-line-table
 
   show raw: set text(font: fonts.等宽)
   show raw.where(block: true): set par(leading: .65em)
@@ -101,6 +100,7 @@
 
   set heading(numbering: "1.1")
 
+  show table: three-line-table
   show heading.where(level: 1): it => {
     pagebreak(weak: true)
     it
