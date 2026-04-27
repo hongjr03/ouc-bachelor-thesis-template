@@ -71,7 +71,7 @@
   }
 
   show bibliography: it => pagebreak(weak: true) + it
-  show figure: set block(breakable: false)
+  show figure: set block(breakable: false, placement: auto)
   show figure.where(kind: table): set block(breakable: true)
 
   body
