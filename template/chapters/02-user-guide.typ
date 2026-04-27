@@ -18,7 +18,7 @@
 在 `main.typ` 的开头，你会看到以下代码：
 
 ```typ
-#import "@preview/unofficial-ouc-bachelor-thesis:0.1.0": project
+#import "@preview/unofficial-ouc-bachelor-thesis:0.2.0": project
 
 #show: project.with(
   title: (
