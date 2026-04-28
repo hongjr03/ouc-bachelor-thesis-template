@@ -2,7 +2,7 @@
 #import "@preview/zebraw:0.6.3": zebraw, zebraw-init
 #import "@preview/itemize:0.2.0": default-enum-list
 #import "chapnum.typ": chap-num
-#import "three-line-table.typ": three-line-table
+#import "three-line-table.typ": three-line-table, continue-table
 #import "@preview/cuti:0.4.0": fakebold, fakeitalic
 
 #let global-style(
@@ -128,7 +128,7 @@
   show figure.where(kind: table): set block(breakable: true)
 
   show figure.caption: set text(size: zh("五号"))
-  // show link: it => underline(text(blue, it))
+  show table: it => continue-table.update(false) + it
 
   body
 }
