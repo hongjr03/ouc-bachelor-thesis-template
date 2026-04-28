@@ -100,7 +100,7 @@
   // 正文样式与内容
   show: apply-style.with(
     title: title-str.zh,
-    chap-num-config: config.at("numbering", default: (:)),
+    chap-num-config: config.at("numbering", default: ()),
   )
   show: init-gb7714.with(bytes(bibliography), style: "numeric", version: "2015")
 
