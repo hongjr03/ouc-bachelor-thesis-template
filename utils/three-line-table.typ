@@ -6,7 +6,7 @@
 
 #let header-attach-cell(columns) = table.cell(colspan: columns, {
   context if continue-table.get() != false {
-    place(right + top, dy: -1.4em)[
+    place(right + top, dy: -1.6em)[
       #set text(size: zh("五号"))
       续表#(query(figure.where(kind: table).before(here())).last().numbering)(none)
     ]
