@@ -4,9 +4,20 @@
 
 #let continue-table = state("continue-table")
 
+#let header-attach-cell(columns) = table.cell(colspan: columns, {
+  context if continue-table.get() != false {
+    place(right + top, dy: -1.4em)[
+      #set text(size: zh("五号"))
+      续表#(query(figure.where(kind: table).before(here())).last().numbering)(none)
+    ]
+    v(-0.8em)
+  } else {
+    v(-0.8em)
+    continue-table.update(true)
+  }
+})
+
 #let three-line-table = it => {
-
-
   if it.children.any(c => c.func() == table.hline) {
     return it
   }
@@ -19,26 +30,24 @@
   meta.stroke = none
   meta.remove("children")
 
-  let header = it.children.find(c => c.func() == table.header)
+  let header = it.children.filter(c => c.func() == table.header)
   let cells = it.children.filter(c => c.func() == table.cell)
-  if header == none {
+  if header.len() == 0 {
     let columns = meta.columns.len()
     header = table.header(
-      table.cell(colspan: columns, {
-        context if continue-table.get() != none {
-          place(right + top, dy: -1.4em)[
-            #set text(size: zh("五号"))
-            续表#(query(figure.where(kind: table).before(here())).last().numbering)(none)
-          ]
-          v(-0.8em)
-        } else {
-          v(-0.8em)
-          continue-table.update(true)
-        }
-      }),
+      header-attach-cell(columns),
       ..cells.slice(0, columns),
     )
     cells = cells.slice(columns)
+  } else {
+    let columns = meta.columns.len()
+    let children = if type(header) != array { header.children } else {
+      header.map(h => h.children).flatten()
+    }
+    header = table.header(
+      header-attach-cell(columns),
+      ..children,
+    )
   }
 
   return table(
