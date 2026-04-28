@@ -123,6 +123,7 @@
   show figure.where(kind: table): set figure.caption(position: top)
   show figure: set par(leading: .65em)
   show table: set par(leading: .65em)
+  show table: set text(size: zh("五号"))
   show raw.where(block: true): set par(leading: .65em)
   show figure: set block(breakable: false)
   show figure.where(kind: table): set block(breakable: true)
