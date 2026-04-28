@@ -41,7 +41,7 @@ jobs:
           tool: just
 
       - name: Install Typst
-        uses: typst-community/setup-typst@v4
+        uses: typst-community/setup-typst@v5
 
       - name: Download and install Chinese fonts
         run: |
@@ -85,7 +85,7 @@ jobs:
           # TODO create tar.gz with same contents as packages.typst.org
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.PKG_NAME }}-${{ env.PKG_VERSION }}
           path: dist/*
@@ -100,7 +100,7 @@ jobs:
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.build.outputs.pkg-id }}
 
@@ -125,7 +125,7 @@ jobs:
           sparse-checkout: ${{ env.PATH_PREFIX }}/${{ needs.build.outputs.pkg-name }}/${{ needs.build.outputs.pkg-version }}
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.build.outputs.pkg-id }}
 
