@@ -13,7 +13,8 @@ exclude = [
     ".git/**",
     ".gitignore",
     "examples/**",
-    "assets/qrcode_1777349536775.jpg"
+    "assets/qrcode_1777349536775.jpg",
+    "scripts/**"
 ]
 
 [template]
