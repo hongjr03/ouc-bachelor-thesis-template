@@ -24,6 +24,7 @@
           )[你]).height
       ),
     first-line-indent: (amount: 2em, all: true),
+    justify: true,
   )
   show figure: set par(leading: .65em)
   show table: set par(leading: .65em)
@@ -78,12 +79,13 @@
 
 #let apply-style(title: "", body, chap-num-config: ()) = {
   show: chap-num.with(
-    config: chap-num-config + (
-      (figure.where(kind: image), figure, "1-1"),
-      (figure.where(kind: table), figure, "1-1"),
-      (figure.where(kind: raw), figure, "1-1"),
-      (math.equation, math.equation, "(1-1)"),
-    ),
+    config: chap-num-config
+      + (
+        (figure.where(kind: image), figure, "1-1"),
+        (figure.where(kind: table), figure, "1-1"),
+        (figure.where(kind: raw), figure, "1-1"),
+        (math.equation, math.equation, "(1-1)"),
+      ),
   )
   counter(page).update(1)
 
