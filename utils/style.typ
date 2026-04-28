@@ -102,8 +102,11 @@
   set heading(numbering: "1.1")
 
   show table: three-line-table
+
   show heading.where(level: 1): it => {
-    pagebreak(weak: true)
+    if counter(heading).get().at(0) > 1 {
+      pagebreak(weak: true)
+    }
     it
   }
 
