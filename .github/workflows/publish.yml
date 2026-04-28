@@ -103,6 +103,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.build.outputs.pkg-id }}
+          path: ${{ needs.build.outputs.pkg-id }}
 
       - name: Add artifacts to release
         uses: ncipollo/release-action@v1
@@ -128,6 +129,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.build.outputs.pkg-id }}
+          path: ${{ needs.build.outputs.pkg-id }}
 
       - name: Commit package release
         env:
