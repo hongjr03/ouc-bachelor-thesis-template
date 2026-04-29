@@ -10,9 +10,9 @@
       #set text(size: zh("五号"))
       续表#(query(figure.where(kind: table).before(here())).last().numbering)(none)
     ]
-    v(-0.8em)
+    v(-0.9em)
   } else {
-    v(-0.8em)
+    v(-0.9em)
     continue-table.update(true)
   }
 })
