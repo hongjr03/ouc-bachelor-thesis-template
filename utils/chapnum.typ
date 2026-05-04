@@ -26,7 +26,7 @@
       show k: set f(
         numbering: _ => {
           if f == math.equation {
-            set text(font: "Times New Roman", size: zh("五号"))
+            // set text(font: "Times New Roman", size: zh("五号"))
             numbering(n, ..(h1-counter.get(), counter(k).get()).flatten())
           } else {
             numbering(n, ..(h1-counter.get(), counter(k).get()).flatten())
