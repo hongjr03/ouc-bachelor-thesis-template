@@ -7,6 +7,7 @@
 
 #let global-style(
   fonts: (:),
+  chap-num-config: (),
   body,
 ) = context {
   set text(lang: "zh", region: "cn")
@@ -76,13 +77,13 @@
         (figure.where(kind: raw), figure, "1-1"),
         (math.equation, math.equation, "(1-1)"),
       ),
-    fonts: fonts
+    fonts: fonts,
   )
 
   body
 }
 
-#let apply-style(title: "", body, chap-num-config: ()) = {
+#let apply-style(title: "", body) = {
   counter(page).update(1)
 
   set page(

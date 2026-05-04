@@ -74,7 +74,7 @@
   )
 
   // 全局样式
-  show: global-style.with(fonts: resolved-fonts)
+  show: global-style.with(fonts: resolved-fonts, chap-num-config: config.at("numbering", default: ()))
 
   // 封面
   cover(
@@ -101,7 +101,6 @@
   // 正文样式与内容
   show: apply-style.with(
     title: title-str.zh,
-    chap-num-config: config.at("numbering", default: ()),
   )
   show: init-gb7714.with(bytes(bibliography), style: "numeric", version: "2015")
 
