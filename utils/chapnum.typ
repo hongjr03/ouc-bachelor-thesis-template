@@ -1,3 +1,4 @@
+#import "@preview/pointless-size:0.1.2": zh
 // https://github.com/ParaN3xus/typst-snippets/blob/main/chapnum/chapnum.typ
 
 #let chap-num(
@@ -8,6 +9,7 @@
     (math.equation, math.equation, "(1-1)"),
   ),
   unnumbered-label: "-",
+  fonts: (:),
   body,
 ) = {
   show heading.where(level: 1): it => {
@@ -23,7 +25,12 @@
 
       show k: set f(
         numbering: _ => {
-          numbering(n, ..(h1-counter.get(), counter(k).get()).flatten())
+          if f == math.equation {
+            set text(font: "Times New Roman", size: zh("五号"))
+            numbering(n, ..(h1-counter.get(), counter(k).get()).flatten())
+          } else {
+            numbering(n, ..(h1-counter.get(), counter(k).get()).flatten())
+          }
         },
       )
 

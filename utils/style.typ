@@ -68,10 +68,6 @@
     it
   }
 
-  body
-}
-
-#let apply-style(title: "", body, chap-num-config: ()) = {
   show: chap-num.with(
     config: chap-num-config
       + (
@@ -80,7 +76,13 @@
         (figure.where(kind: raw), figure, "1-1"),
         (math.equation, math.equation, "(1-1)"),
       ),
+    fonts: fonts
   )
+
+  body
+}
+
+#let apply-style(title: "", body, chap-num-config: ()) = {
   counter(page).update(1)
 
   set page(
