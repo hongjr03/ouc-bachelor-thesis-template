@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+current="${1:-${GITHUB_REF_NAME:-HEAD}}"
+previous="${2:-}"
+
+if [[ "$current" != "HEAD" && "$current" != refs/* && "$current" != v* ]]; then
+  current="v${current}"
+fi
+
+if [[ -z "$previous" && "$current" != "HEAD" ]]; then
+  previous="$(git describe --tags --abbrev=0 --match 'v[0-9]*' "${current}^" 2>/dev/null || true)"
+fi
+
+range="$current"
+if [[ -n "$previous" ]]; then
+  range="${previous}..${current}"
+fi
+
+version="${current#refs/tags/}"
+version="${version#v}"
+date="$(git log -1 --format=%cs "$current")"
+
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+commit_pattern='^([a-zA-Z]+)(\([^)]+\))?(!)?:[[:space:]]*(.+)$'
+
+touch \
+  "$tmp/breaking" \
+  "$tmp/feat" \
+  "$tmp/fix" \
+  "$tmp/perf" \
+  "$tmp/docs" \
+  "$tmp/refactor" \
+  "$tmp/style" \
+  "$tmp/test" \
+  "$tmp/maint" \
+  "$tmp/revert" \
+  "$tmp/other"
+
+while IFS= read -r subject; do
+  [[ -z "$subject" ]] && continue
+
+  if [[ "$subject" =~ $commit_pattern ]]; then
+    type="${BASH_REMATCH[1],,}"
+    scope="${BASH_REMATCH[2]}"
+    breaking="${BASH_REMATCH[3]}"
+    summary="${BASH_REMATCH[4]}"
+    scope="${scope#(}"
+    scope="${scope%)}"
+
+    item="$summary"
+    if [[ -n "$scope" ]]; then
+      item="**${scope}:** ${summary}"
+    fi
+
+    if [[ -n "$breaking" ]]; then
+      printf -- "- %s\n" "$item" >> "$tmp/breaking"
+      continue
+    fi
+
+    case "$type" in
+      feat) target="feat" ;;
+      fix) target="fix" ;;
+      perf) target="perf" ;;
+      docs) target="docs" ;;
+      refactor) target="refactor" ;;
+      style) target="style" ;;
+      test) target="test" ;;
+      build|ci|chore) target="maint" ;;
+      revert) target="revert" ;;
+      *) target="other" ;;
+    esac
+    printf -- "- %s\n" "$item" >> "$tmp/$target"
+  else
+    printf -- "- %s\n" "$subject" >> "$tmp/other"
+  fi
+done < <(git log --reverse --no-merges --format=%s "$range")
+
+print_section() {
+  local title="$1"
+  local file="$2"
+
+  if [[ -s "$file" ]]; then
+    printf '\n### %s\n\n' "$title"
+    cat "$file"
+  fi
+}
+
+printf '## v%s - %s\n' "$version" "$date"
+
+if [[ -n "$previous" ]]; then
+  printf '\n%s\n' "_Changes since ${previous}._"
+fi
+
+print_section "Breaking Changes" "$tmp/breaking"
+print_section "Features" "$tmp/feat"
+print_section "Fixes" "$tmp/fix"
+print_section "Performance" "$tmp/perf"
+print_section "Documentation" "$tmp/docs"
+print_section "Refactoring" "$tmp/refactor"
+print_section "Styles" "$tmp/style"
+print_section "Tests" "$tmp/test"
+print_section "Maintenance" "$tmp/maint"
+print_section "Reverts" "$tmp/revert"
+print_section "Other" "$tmp/other"
+
+if ! find "$tmp" -type f -size +0c | grep -q .; then
+  printf '\n- No changes.\n'
+fi

@@ -34,6 +34,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Install just
         uses: taiki-e/install-action@v2
@@ -74,6 +76,9 @@ jobs:
           echo "GIT_USER_NAME=$(git log -1 --pretty=format:'%an')" >> "${GITHUB_ENV}"
           echo "GIT_USER_EMAIL=$(git log -1 --pretty=format:'%ae')" >> "${GITHUB_ENV}"
 
+      - name: Check generated changelog
+        run: bash scripts/generate-changelog "${GITHUB_REF_NAME}" > /dev/null
+
       - name: Create archives
         run: |
           just package out
@@ -99,16 +104,25 @@ jobs:
       contents: write
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
       - name: Download artifacts
         uses: actions/download-artifact@v7
         with:
           pattern: ${{ needs.build.outputs.pkg-id }}
           path: ${{ needs.build.outputs.pkg-id }}
 
+      - name: Generate release notes
+        run: bash scripts/generate-changelog "v${{ needs.build.outputs.pkg-version }}" > RELEASE_NOTES.md
+
       - name: Add artifacts to release
         uses: ncipollo/release-action@v1
         with:
           artifacts: ${{ needs.build.outputs.pkg-id }}/*
+          bodyFile: RELEASE_NOTES.md
 
   publish:
     name: Publish to a registry fork
