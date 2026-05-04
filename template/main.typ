@@ -1,4 +1,4 @@
-#import "@preview/unofficial-ouc-bachelor-thesis:0.2.0": project
+#import "@preview/unofficial-ouc-bachelor-thesis:0.2.1": project
 
 #show: project.with(
   title: (
