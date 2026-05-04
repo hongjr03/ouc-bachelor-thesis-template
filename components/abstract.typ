@@ -7,6 +7,7 @@
   fonts: (:),
 ) = {
   set heading(numbering: none, bookmarked: false, outlined: false)
+  
   page({
     heading(level: 1, title.zh)
     heading(level: 1, "摘要".clusters().join(h(.5em * 3)))
@@ -20,10 +21,10 @@
   page({
     heading(level: 1, title.en)
     heading(level: 1, "Abstract")
-
+    set text(font: fonts.西文, size: zh("四号"))
     abstract.en
     parbreak()
-    set text(font: fonts.西文, size: zh("小四"), weight: "bold")
+    set text(font: fonts.西文, size: zh("四号"), weight: "bold")
     [Key Words: ] + keywords.en.join(", ")
   })
 }
